@@ -12,9 +12,6 @@ This project is built on the foundations of Jupiter Aggregator and Solana blockc
 
 -   **Burner Wallet Integration**: For users who are concerned about security or just want to experiment without using their personal wallets, we provide an option to use burner wallets.
 -   **Swap Learning**: An educational tool that allows users to learn the basics of cryptocurrency swaps in a risk-free environment.
--   **Trading Simulator**: A comprehensive simulation environment for practicing trading strategies.
--   **Automated Trading**: Introduce features to automate trading based on predefined criteria.
--   **TradingView Integration**: Visualize trading strategies and market movements using TradingView's advanced charting tools.
 
 ## What It Uses
 
@@ -37,6 +34,9 @@ This project is built on the foundations of Jupiter Aggregator and Solana blockc
 
 ## Future Vision
 
+-   **Trading Simulator**: A comprehensive simulation environment for practicing trading strategies.
+-   **Automated Trading**: Introduce features to automate trading based on predefined criteria.
+-   **TradingView Integration**: Visualize trading strategies and market movements using TradingView's advanced charting tools.
 -   Expand the simulator to encompass more comprehensive trading scenarios.
 -   Integrate more advanced automated trading capabilities.
 -   Introduce social features to learn and compete with peers.
