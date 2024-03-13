@@ -54,15 +54,24 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
             onSwapSuccess(transaction);
             message.success("Swap successful!");
         } catch (error) {
-            setSwapStatus("failed");
-            setSwapError(error.message);
-            message.error(error.message);
+            if (error instanceof Error) {
+                setSwapStatus("failed");
+                setSwapError(error.message);
+                message.error(error.message);
+            } else {
+                console.error("An unknown error occurred:", error);
+                setSwapStatus("failed");
+                setSwapError("An unknown error occurred");
+                message.error("An unknown error occurred");
+            }
         }
     };
 
     return (
-        <Card>
-            <Title level={3}>Simulate USDC/JUP swap</Title>
+        <Card style={{ backgroundColor: "#1e1e1e", borderRadius: 8 }}>
+            <Title level={4} style={{ color: "#ffffff" }}>
+                Simulate USDC/JUP swap
+            </Title>
             <Row gutter={[16, 16]}>
                 <Col span={24}>
                     <Input
@@ -97,6 +106,10 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                         block
                         onClick={handleSwap}
                         disabled={swapStatus === "pending"}
+                        style={{
+                            backgroundColor: "#4b0082",
+                            borderColor: "#4b0082",
+                        }}
                     >
                         {swapStatus === "pending" ? (
                             <LoadingOutlined spin />

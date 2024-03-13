@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+declare const TradingView: any;
+
 type Props = {
     ohlcData: number[][];
 };

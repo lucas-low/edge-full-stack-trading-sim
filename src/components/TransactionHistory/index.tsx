@@ -75,14 +75,37 @@ export default function TransactionHistory({ transactions }: Props) {
     ];
 
     return (
-        <Card style={{ marginTop: 16 }}>
-            <Title level={4}>Transaction History</Title>
-            <Table
-                dataSource={transactions}
-                columns={columns}
-                rowKey="id"
-                pagination={false}
-            />
+        <Card
+            style={{
+                marginTop: 16,
+                backgroundColor: "#1e1e1e",
+                borderRadius: 8,
+            }}
+        >
+            <Title level={4} style={{ color: "#ffffff" }}>
+                Transaction History
+            </Title>
+            {transactions.length > 0 ? (
+                <Table
+                    dataSource={transactions}
+                    columns={columns}
+                    rowKey="id"
+                    pagination={false}
+                    style={{ backgroundColor: "#1e1e1e" }}
+                    rowClassName={() => "transaction-row"}
+                />
+            ) : (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "100%",
+                    }}
+                >
+                    <p style={{ color: "#ffffff" }}>No transactions yet</p>
+                </div>
+            )}
         </Card>
     );
 }

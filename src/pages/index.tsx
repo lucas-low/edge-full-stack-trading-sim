@@ -6,10 +6,19 @@ import TransactionHistory from "../components/TransactionHistory";
 
 const { Header, Content } = Layout;
 
-export default function Home() {
-    const [transactions, setTransactions] = useState([]);
+type Transaction = {
+    id: string;
+    transactionHash: string;
+    amountToBuyUsdc: number;
+    slippage: number;
+    status: "success" | "failed";
+    timestamp: string;
+};
 
-    const handleSwapSuccess = (transaction: any) => {
+export default function Home() {
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+    const handleSwapSuccess = (transaction: Transaction) => {
         const newTransaction: Transaction = {
             id: transaction.id,
             transactionHash: transaction.transactionHash,
@@ -22,7 +31,7 @@ export default function Home() {
     };
 
     return (
-        <Layout style={{ minHeight: "100vh", backgroundColor: "#1e1e1e" }}>
+        <Layout style={{ minHeight: "100vh", backgroundColor: "#141414" }}>
             <Header
                 style={{
                     backgroundColor: "#141414",
