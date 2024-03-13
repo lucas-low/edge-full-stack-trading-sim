@@ -1,8 +1,6 @@
-// /pages/api/swap.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { Keypair, Connection, Transaction, PublicKey, LAMPORTS_PER_SOL,VersionedTransaction  } from '@solana/web3.js';
-import base58 from 'bs58';
+import { LAMPORTS_PER_SOL,  } from '@solana/web3.js';
 
 const RPC_URL = 'https://api.mainnet-beta.solana.com';
 const BASE_URL = "https://quote-api.jup.ag/v6";
@@ -10,7 +8,7 @@ const JUP_ADDRESS = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN";
 const USDC_ADDRESS = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
 const SLIPPAGE = 100; // 1% Slippage
 
-async function getQuoteBuy(amountToBuyUsdc: number): Promise<any> {
+async function getQuoteBuy(amountToBuyUsdc: number): Promise<number> {
     const amt = amountToBuyUsdc * LAMPORTS_PER_SOL;
     const response = await axios.get(`${BASE_URL}/quote`, {
         params: {

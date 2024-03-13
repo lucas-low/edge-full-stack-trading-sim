@@ -1,39 +1,31 @@
 import { useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import {
     Alert,
     Button,
     Card,
     Col,
-    Dropdown,
     Input,
-    Menu,
     message,
     Row,
-    Space,
     Tabs,
     Typography,
 } from "antd/lib";
 import {
-    DownOutlined,
     SwapOutlined,
     CheckCircleOutlined,
     CloseCircleOutlined,
     LoadingOutlined,
 } from "@ant-design/icons/lib";
-import {
-    WalletMultiButton,
-    WalletDisconnectButton,
-} from "@solana/wallet-adapter-react-ui";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 const { Title } = Typography;
-const { TabPane } = Tabs;
+// const { TabPane } = Tabs;
 
 export default function Home() {
     const [amountToBuyUsdc, setAmountToBuyUsdc] = useState("");
     const [slippage, setSlippage] = useState(1);
-    const [isConnected, setIsConnected] = useState(false);
     const [swapStatus, setSwapStatus] = useState("idle");
     const [transactionHash, setTransactionHash] = useState("");
     const [swapError, setSwapError] = useState("");
@@ -132,7 +124,6 @@ export default function Home() {
                         style={{ display: "flex", justifyContent: "center" }}
                     >
                         <WalletMultiButton />
-                        {isConnected && <WalletDisconnectButton />}
                     </Col>
                     <Col span={24}>
                         <Input
