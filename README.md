@@ -37,9 +37,8 @@ This project is built on the foundations of Jupiter Aggregator and Solana blockc
 -   **Trading Simulator**: A comprehensive simulation environment for practicing trading strategies.
 -   **Automated Trading**: Introduce features to automate trading based on predefined criteria.
 -   **TradingView Integration**: Visualize trading strategies and market movements using TradingView's advanced charting tools.
--   Expand the simulator to encompass more comprehensive trading scenarios.
--   Integrate more advanced automated trading capabilities.
--   Introduce social features to learn and compete with peers.
+-   **DApp Integration with Phantom**: Optimizing the mobile version of the Trading Simulator as a React Native DApp to seamlessly integrate with Phantom's app ecosystem.
+-   **Enhanced Social Features**: Introducing social features to facilitate learning and competition among users, fostering a collaborative trading community.
 
 To get started with this project, clone the repository and install the dependencies.
 
