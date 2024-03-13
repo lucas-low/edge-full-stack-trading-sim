@@ -35,5 +35,11 @@ export default function TradingViewChart({ ohlcData }: Props) {
         };
     }, []);
 
-    return <div id="tradingview_chart_container" ref={chartContainerRef} />;
+    return (
+        <div
+            id="tradingview_chart_container"
+            ref={chartContainerRef}
+            style={{ position: "relative", width: "100%", height: "100%" }}
+        />
+    );
 }

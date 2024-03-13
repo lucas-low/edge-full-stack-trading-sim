@@ -32,6 +32,7 @@
         "notistack": "^3.0.1",
         "react": "^18",
         "react-dom": "^18",
+        "react-query": "^3.39.3",
         "web3-react-phantom": "^1.0.4"
     },
     "devDependencies": {
