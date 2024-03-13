@@ -1,40 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trading Simulator
 
-## Getting Started
+Welcome to the Trading Simulator project!
 
-First, run the development server:
+![image (18)](https://github.com/lucas-low/edge-full/assets/53358104/7ea93076-199d-4361-855e-d34e57bec29d)
+
+## Introduction
+
+This project is built on the foundations of Jupiter Aggregator and Solana blockchain technology, allowing users to simulate trading scenarios without financial risk. It provides a safe environment for beginners who are hesitant to use their own wallets, as well as for those seeking to sharpen their trading strategies.
+
+## Features
+
+-   **Burner Wallet Integration**: For users who are concerned about security or just want to experiment without using their personal wallets, we provide an option to use burner wallets.
+-   **Swap Learning**: An educational tool that allows users to learn the basics of cryptocurrency swaps in a risk-free environment.
+-   **Trading Simulator**: A comprehensive simulation environment for practicing trading strategies.
+-   **Automated Trading**: Introduce features to automate trading based on predefined criteria.
+-   **TradingView Integration**: Visualize trading strategies and market movements using TradingView's advanced charting tools.
+
+## What It Uses
+
+-   **Solana Wallet Adapter**: For seamless wallet connections without exposing sensitive keys.
+-   **Ant Design (Antd)**: A comprehensive UI library for intuitive interface design.
+-   **Axios**: For handling API requests efficiently.
+-   **Next.js**: A React framework for server-side rendering and generating static websites.
+
+## What It Does
+
+-   Simulates a cryptocurrency trading environment.
+-   Provides tools for learning and practicing swap transactions.
+-   Allows for visualization of market strategies and potential outcomes.
+
+## Best Practices
+
+-   **Security**: Ensures that private keys are never exposed, adhering to the highest standards of user security and privacy.
+-   **Accessibility**: Designed with usability in mind, making the platform accessible for beginners while providing depth for experienced users.
+-   **Education**: Focuses on learning by doing, allowing users to familiarize themselves with the mechanics of trading in a controlled setting.
+
+## Future Vision
+
+-   Expand the simulator to encompass more comprehensive trading scenarios.
+-   Integrate more advanced automated trading capabilities.
+-   Introduce social features to learn and compete with peers.
+
+To get started with this project, clone the repository and install the dependencies.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+npm install
+
+# Run the application
+npm run start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.git remote add origin https://github.com/user/repo.git
