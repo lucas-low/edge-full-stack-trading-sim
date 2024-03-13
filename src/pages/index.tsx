@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
     Alert,
     Button,
@@ -32,17 +32,16 @@ const { TabPane } = Tabs;
 
 export default function Home() {
     const [amountToBuyUsdc, setAmountToBuyUsdc] = useState("");
-    const [publicKey, setPublicKey] = useState("");
-    const [privateKey, setPrivateKey] = useState("");
     const [slippage, setSlippage] = useState(1);
     const [isConnected, setIsConnected] = useState(false);
     const [swapStatus, setSwapStatus] = useState("idle");
     const [transactionHash, setTransactionHash] = useState("");
     const [swapError, setSwapError] = useState("");
-    const [price, setPrice] = useState(null);
-    const [priceWithSlippage, setPriceWithSlippage] = useState(null);
+    const [price, setPrice] = useState<number | null>(null);
+    const [priceWithSlippage, setPriceWithSlippage] = useState<number | null>(
+        null
+    );
     const [routePlan, setRoutePlan] = useState([]);
-    const [quote, setQuote] = useState({});
     const wallet = useWallet();
 
     const handleSwap = async () => {
@@ -73,12 +72,28 @@ export default function Home() {
             setRoutePlan(quote.routePlan);
             message.success("Swap successful!");
         } catch (error) {
+            let errorMessage = "An error occurred while processing the swap.";
+            if (axios.isAxiosError(error)) {
+                const responseError = error.response;
+                if (
+                    responseError &&
+                    responseError.data &&
+                    "error" in responseError.data
+                ) {
+                    errorMessage = responseError.data.error;
+                } else if (
+                    responseError &&
+                    responseError.data &&
+                    typeof responseError.data === "string"
+                ) {
+                    errorMessage = responseError.data;
+                }
+            } else if (error instanceof Error) {
+                errorMessage = error.message;
+            }
             setSwapStatus("failed");
-            setSwapError(
-                error.response?.data?.error ||
-                    "An error occurred while processing the swap."
-            );
-            message.error(swapError);
+            setSwapError(errorMessage);
+            message.error(errorMessage);
         }
     };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
     WalletProvider,
     ConnectionProvider,
@@ -13,7 +13,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 const network = clusterApiUrl("mainnet-beta");
 const wallets = [new PhantomWalletAdapter(), new UnsafeBurnerWalletAdapter()];
 
-const ClientWalletProvider = ({ children }) => {
+const ClientWalletProvider = ({ children }: { children: ReactNode }) => {
     return (
         <ConnectionProvider endpoint={network}>
             <WalletProvider wallets={wallets} autoConnect>
