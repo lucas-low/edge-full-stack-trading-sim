@@ -11,7 +11,10 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 
 const network = clusterApiUrl("mainnet-beta");
-const wallets = [new PhantomWalletAdapter(), new UnsafeBurnerWalletAdapter()];
+const wallets = [
+    // new PhantomWalletAdapter(),
+    new UnsafeBurnerWalletAdapter(),
+];
 
 const ClientWalletProvider = ({ children }: { children: ReactNode }) => {
     return (
