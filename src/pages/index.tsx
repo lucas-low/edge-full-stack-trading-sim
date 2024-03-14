@@ -1,10 +1,17 @@
 import { useState } from "react";
-import { Layout, Row, Col } from "antd/lib";
+import { Layout, Row, Col, Typography } from "antd/lib";
+import {
+    GithubOutlined,
+    LinkedinOutlined,
+    TwitterOutlined,
+    MailOutlined,
+} from "@ant-design/icons/lib";
 import Chart from "../components/Chart";
 import SwapInterface from "../components/SwapInterface";
 import TransactionHistory from "../components/TransactionHistory";
 import { v4 as uuidv4 } from "uuid";
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
+const { Link } = Typography;
 
 type Transaction = {
     id: string;
@@ -50,7 +57,8 @@ export default function Home() {
                     JUP/USDC Simulator
                 </h1>
             </Header>
-            <Content style={{ padding: "24px 48px" }}>
+
+            <Content style={{ padding: "24px 48px", position: "relative" }}>
                 <Row gutter={[24, 24]} justify="center">
                     <Col xs={24} lg={16}>
                         <Chart />
@@ -63,6 +71,55 @@ export default function Home() {
                     </Col>
                 </Row>
             </Content>
+            <div
+                style={{
+                    position: "absolute",
+                    top: "16px",
+                    right: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                }}
+            >
+                <a
+                    href="https://github.com/lucas-low"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <GithubOutlined
+                        style={{
+                            color: "#E0E0E0",
+                            fontSize: "24px",
+                            margin: "0 10px",
+                        }}
+                    />
+                </a>
+                <a
+                    href="https://linkedin.com/in/lucaslowyy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <LinkedinOutlined
+                        style={{
+                            color: "#E0E0E0",
+                            fontSize: "24px",
+                            margin: "0 10px",
+                        }}
+                    />
+                </a>
+                <a
+                    href="https://twitter.com/0xlucaslow"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <TwitterOutlined
+                        style={{
+                            color: "#E0E0E0",
+                            fontSize: "24px",
+                            margin: "0 10px",
+                        }}
+                    />
+                </a>
+            </div>
         </Layout>
     );
 }
