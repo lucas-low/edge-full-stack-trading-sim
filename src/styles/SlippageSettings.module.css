@@ -13,7 +13,7 @@
     background-color: #141414;
     border: none;
     justify-content: center;
-    width: calc(100% - 8px);
+    width: 100%;
 }
 
 .inputNumber {
@@ -46,4 +46,20 @@
     background-color: #805AD5; 
     border: none;
     width: calc(100% - 8px);
+}
+
+.customInputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.customInputLabel {
+    margin: auto;
+}
+
+.customInput {
+    margin: auto;
 }

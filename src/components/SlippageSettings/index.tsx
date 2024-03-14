@@ -15,7 +15,9 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
 }) => {
     const [openPopover, setOpenPopover] = useState(false);
     const [tooltipVisible, setTooltipVisible] = useState(false);
-
+    const [customSlippage, setCustomSlippage] = useState<number | string>(
+        slippage
+    );
     const handleOpenPopover = (open: boolean) => {
         setOpenPopover(open);
         setTooltipVisible(!open);
@@ -27,6 +29,7 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
     };
 
     const handleSaveSettings = () => {
+        onSlippageChange(Number(customSlippage));
         localStorage.setItem("slippage", slippage.toString());
         handleClose();
     };
@@ -58,35 +61,35 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
 
     const content = (
         <div className={styles.slippagePopoverContent}>
-            <Button
-                className={styles.slippageButton}
-                onClick={() => onSlippageChange(0.3)}
-            >
-                0.3%
-            </Button>
-            <Button
-                className={styles.slippageButton}
-                onClick={() => onSlippageChange(0.5)}
-            >
-                0.5%
-            </Button>
-            <Button
-                className={styles.slippageButton}
-                onClick={() => onSlippageChange(1)}
-            >
-                1%
-            </Button>
-            <InputNumber
-                className={styles.inputNumber}
-                min={0}
-                max={5}
-                value={slippage}
-                onChange={(value) => value && onSlippageChange(value)}
-                formatter={(value) => `${value}%`}
-                parser={(value: string | undefined) =>
-                    value ? parseFloat(value) : 0
-                }
-            />
+            {[0.3, 0.5, 1].map((value) => (
+                <Button
+                    key={value}
+                    className={`${styles.slippageButton} ${
+                        Number(customSlippage) === value
+                            ? styles.activeButton
+                            : ""
+                    }`}
+                    onClick={() => setCustomSlippage(value)}
+                >
+                    {value}%
+                </Button>
+            ))}
+            <div className={styles.customInputWrapper}>
+                <label className={styles.customInputLabel}>Custom</label>
+                <InputNumber
+                    className={styles.customInput}
+                    min={0}
+                    max={50}
+                    value={Number(customSlippage)}
+                    formatter={(value) => `${value}%`}
+                    parser={(value: string | undefined) =>
+                        value ? parseFloat(value) : 0
+                    }
+                    onChange={(value) =>
+                        value !== null && setCustomSlippage(value)
+                    }
+                />
+            </div>
             <Button
                 className={styles.saveSettingsButton}
                 onClick={handleSaveSettings}
