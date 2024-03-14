@@ -5,16 +5,15 @@ const RPC_URL = 'https://api.mainnet-beta.solana.com';
 const BASE_URL = "https://quote-api.jup.ag/v6";
 const JUP_ADDRESS = "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN";
 const USDC_ADDRESS = "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v";
-const SLIPPAGE = 100; // 1% Slippage
 
-export const getQuoteBuy = async (amountToBuyUsdc: number): Promise<number> => {
+export const getQuoteBuy = async (amountToBuyUsdc: number, slippageBps: number): Promise<number> => {
     const amt = amountToBuyUsdc * LAMPORTS_PER_SOL;
     const response = await axios.get(`${BASE_URL}/quote`, {
         params: {
             inputMint: USDC_ADDRESS,
             outputMint: JUP_ADDRESS,
             amount: amt,
-            slippageBps: SLIPPAGE,
+            slippageBps,
             swapMode: 'ExactIn',
         },
     });
@@ -31,12 +30,12 @@ export const getOhlcData = async () => {
 export const swap = async (
     amountToBuyUsdc: number,
     publicKey: string,
-    slippage: number
+    slippageBps: number 
 ) => {
     const response = await axios.post("/api/swap", {
         amountToBuyUsdc,
         publicKey,
-        slippage,
+        slippageBps: slippageBps,
     });
     return response.data;
 };

@@ -31,6 +31,7 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
     const [swapStatus, setSwapStatus] = useState("idle");
     const [swapError, setSwapError] = useState("");
     const wallet = useWallet();
+    console.log("slippage", slippage);
 
     const handleSwap = async () => {
         if (!amountToBuyUsdc) {
@@ -45,10 +46,11 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
 
         setSwapStatus("pending");
         try {
+            const slippageBps = slippage * 100;
             const transaction = await swap(
                 parseFloat(amountToBuyUsdc),
                 wallet.publicKey.toBase58(),
-                slippage
+                slippageBps
             );
             setSwapStatus("success");
             onSwapSuccess(transaction);

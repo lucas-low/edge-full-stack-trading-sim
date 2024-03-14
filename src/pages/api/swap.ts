@@ -6,10 +6,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const { amountToBuyUsdc, publicKey } = req.body;
+    const { amountToBuyUsdc, publicKey, slippageBps } = req.body;
 
     try {
-        const quote = await getQuoteBuy(amountToBuyUsdc);
+        const quote = await getQuoteBuy(amountToBuyUsdc, slippageBps);
         console.log(`Got quote:`, quote);
         res.status(200).json({
             success: true,
