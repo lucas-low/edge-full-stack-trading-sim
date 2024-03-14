@@ -6,8 +6,8 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 20, 20, 20;
+  --background-end-rgb: 20, 20, 20;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -34,10 +34,10 @@
     #00000080
   );
 
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --callout-rgb: 30, 30, 30;
+  --callout-border-rgb: 50, 50, 50;
+  --card-rgb: 30, 30, 30;
+  --card-border-rgb: 50, 50, 50;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -104,4 +104,44 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.ant-table-thead > tr > th,
+.ant-table-thead > tr > td {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+  border-bottom: 1px solid #303030; 
+  border-right: none !important; 
+}
+
+.ant-table-tbody > tr > td {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+  border-bottom: 1px solid #303030;
+  border-right: none !important; 
+}
+
+.ant-table-tbody > tr:hover > td {
+  background-color: #1e1e1e !important; 
+}
+
+.ant-table-placeholder {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+  border-bottom: none;
+}
+
+.ant-table-summary > tr > td {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+  border-bottom: none; 
+}
+
+.ant-table .ant-table-container .ant-table-content table thead.ant-table-thead .ant-table-cell {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+}
+
+.input-grey-placeholder::placeholder {
+  color: grey;
 }

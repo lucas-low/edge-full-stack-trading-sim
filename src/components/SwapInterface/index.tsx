@@ -68,9 +68,15 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
     };
 
     return (
-        <Card style={{ backgroundColor: "#1e1e1e", borderRadius: 8 }}>
-            <Title level={4} style={{ color: "#ffffff" }}>
-                Simulate USDC/JUP swap
+        <Card
+            style={{
+                backgroundColor: "#3C3C3C",
+                borderRadius: 8,
+                border: "none",
+            }}
+        >
+            <Title level={4} style={{ color: "#E0E0E0" }}>
+                Simulate USDC/JUP Swap
             </Title>
             <Row gutter={[16, 16]}>
                 <Col span={24}>
@@ -78,8 +84,10 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                         type="number"
                         value={amountToBuyUsdc}
                         onChange={(e) => setAmountToBuyUsdc(e.target.value)}
-                        placeholder="Amount to buy in USDC"
+                        placeholder="Amount to Buy (USDC)"
                         size="large"
+                        className="input-grey-placeholder"
+                        style={{ backgroundColor: "#2C2C2C", color: "#E0E0E0" }}
                     />
                 </Col>
                 <Col
@@ -97,6 +105,8 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                         }
                         placeholder="Slippage Tolerance (%)"
                         size="large"
+                        className="input-grey-placeholder"
+                        style={{ backgroundColor: "#2C2C2C", color: "#E0E0E0" }}
                     />
                 </Col>
                 <Col span={24}>
@@ -107,8 +117,8 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                         onClick={handleSwap}
                         disabled={swapStatus === "pending"}
                         style={{
-                            backgroundColor: "#4b0082",
-                            borderColor: "#4b0082",
+                            backgroundColor: "#805AD5",
+                            borderColor: "#805AD5",
                         }}
                     >
                         {swapStatus === "pending" ? (

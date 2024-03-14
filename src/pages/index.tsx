@@ -31,16 +31,16 @@ export default function Home() {
     };
 
     return (
-        <Layout style={{ minHeight: "100vh", backgroundColor: "#141414" }}>
+        <Layout style={{ minHeight: "100vh", backgroundColor: "#1C1C1C" }}>
             <Header
                 style={{
-                    backgroundColor: "#141414",
+                    backgroundColor: "#1C1C1C",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                 }}
             >
-                <h1 style={{ color: "#ffffff", margin: 0 }}>
+                <h1 style={{ color: "#E0E0E0", margin: 0 }}>
                     JUP/USDC Simulator
                 </h1>
             </Header>

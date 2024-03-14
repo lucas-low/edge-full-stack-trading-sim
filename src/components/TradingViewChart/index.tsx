@@ -41,7 +41,11 @@ export default function TradingViewChart({ ohlcData }: Props) {
         <div
             id="tradingview_chart_container"
             ref={chartContainerRef}
-            style={{ position: "relative", width: "100%", height: "100%" }}
+            style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+            }}
         />
     );
 }

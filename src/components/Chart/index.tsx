@@ -9,7 +9,11 @@ const TradingViewChart = dynamic(() => import("../TradingViewChart"), {
 });
 
 export default function Chart() {
-    const { data: ohlcData, isLoading, isError } = useQuery("ohlcData", getOhlcData, {
+    const {
+        data: ohlcData,
+        isLoading,
+        isError,
+    } = useQuery("ohlcData", getOhlcData, {
         retry: 3,
         retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Exponential backoff delay between retries, capped at 30 seconds
         staleTime: 60000,
@@ -24,7 +28,14 @@ export default function Chart() {
     }
 
     return (
-        <Card style={{ backgroundColor: "#141414", borderRadius: 8, height: "100%" }}>
+        <Card
+            style={{
+                backgroundColor: "#141414",
+                borderRadius: 8,
+                height: "100%",
+                border: "none",
+            }}
+        >
             <div style={{ height: "400px" }}>
                 <TradingViewChart ohlcData={ohlcData} />
             </div>

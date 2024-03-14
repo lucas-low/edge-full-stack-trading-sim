@@ -80,18 +80,23 @@ export default function TransactionHistory({ transactions }: Props) {
                 marginTop: 16,
                 backgroundColor: "#1e1e1e",
                 borderRadius: 8,
+                border: "none",
             }}
         >
-            <Title level={4} style={{ color: "#ffffff" }}>
+            {/* <Title level={4} style={{ color: "#ffffff" }}>
                 Transaction History
-            </Title>
+            </Title> */}
             {transactions.length > 0 ? (
                 <Table
                     dataSource={transactions}
                     columns={columns}
                     rowKey="id"
                     pagination={false}
-                    style={{ backgroundColor: "#1e1e1e" }}
+                    style={{
+                        backgroundColor: "#1e1e1e",
+                        maxHeight: "300px",
+                        overflow: "auto",
+                    }}
                     rowClassName={() => "transaction-row"}
                 />
             ) : (
@@ -100,7 +105,7 @@ export default function TransactionHistory({ transactions }: Props) {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        height: "100%",
+                        padding: "16px 0",
                     }}
                 >
                     <p style={{ color: "#ffffff" }}>No transactions yet</p>
