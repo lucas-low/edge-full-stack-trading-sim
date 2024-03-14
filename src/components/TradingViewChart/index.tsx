@@ -33,6 +33,7 @@ export default function TradingViewChart({ ohlcData }: Props) {
                     },
                     disabled_features: [
                         "header_symbol_search",
+                        "symbol_search_hot_key",
                         "header_screenshot",
                         "header_compare",
                         "display_market_status",
@@ -44,6 +45,7 @@ export default function TradingViewChart({ ohlcData }: Props) {
                         "show_hide_button_in_legend",
                         "pane_context_menu",
                         "main_series_scale_menu",
+                        "keyboard_shortcuts",
                     ],
                     overrides: {
                         "paneProperties.background": "#1C1C1C",
@@ -57,7 +59,9 @@ export default function TradingViewChart({ ohlcData }: Props) {
         document.head.appendChild(script);
 
         return () => {
-            document.head.removeChild(script);
+            if (script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
         };
     }, []);
 
