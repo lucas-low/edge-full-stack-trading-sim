@@ -23,6 +23,10 @@ Dive into trading on the Solana blockchain with our Trading Simulator. Learn, pr
 -   **Mobile DApp for Phantom**: Enhance the mobile experience with a React Native DApp that integrates into the Phantom wallet ecosystem.
 -   **Social Trading Features**: Create a community-driven platform where users can learn from each other and compete in trading challenges.
 
+## Disclaimer
+
+-   **Mostly educational and for fun** : So no enforcement of branches and stuff lol
+
 ## Quick Start
 
 ```bash
