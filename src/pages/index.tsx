@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { Layout, Row, Col, Typography, Tooltip } from "antd/lib";
 import {
     GithubOutlined,
@@ -13,6 +13,8 @@ import { v4 as uuidv4 } from "uuid";
 const { Header, Content, Footer } = Layout;
 const { Link } = Typography;
 const { Title } = Typography;
+import { useWindowSize } from "react-use";
+import Image from "next/image";
 
 type Transaction = {
     id: string;
@@ -28,6 +30,8 @@ type Transaction = {
 };
 
 export default function Home() {
+    const { width } = useWindowSize();
+    const isMobile = width < 1024;
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const handleSwapSuccess = (transaction: Transaction) => {
@@ -44,83 +48,44 @@ export default function Home() {
         setTransactions([...transactions, newTransaction]);
     };
 
+    const headerStyle: CSSProperties = {
+        padding: "0 24px",
+        backgroundColor: "#232323",
+        borderBottom: "1px solid #333333",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        flexWrap: "wrap",
+    };
+
+    const socialIconsStyle: CSSProperties = {
+        display: "flex",
+        flexDirection: "row" as const,
+        alignItems: "flex-end",
+        justifyContent: "flex-end",
+        position: "fixed",
+        right: "32px",
+        bottom: "12px",
+        gap: "0.5rem",
+        zIndex: 10,
+    };
+
+    const titleStyle: CSSProperties = {
+        color: "#E0E0E0",
+        margin: "0 16px",
+        flexGrow: 1,
+        fontFamily: '"Orbitron", sans-serif',
+        fontWeight: 900,
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        textShadow: "2px 2px 8px rgba(255, 255, 255, 0.6)",
+    };
     return (
         <Layout style={{ minHeight: "100vh", backgroundColor: "#1C1C1C" }}>
-            <Header
-                style={{
-                    backgroundColor: "#1C1C1C",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "0 24px",
-                    flexWrap: "wrap",
-                }}
-            >
-                <Title level={2} style={{ color: "#E0E0E0", margin: 0 }}>
-                    JUP/USDC Simulator
+            <Header style={headerStyle}>
+                <Title level={3} style={titleStyle}>
+                    Edge
                 </Title>
-                <div>
-                    <Tooltip title="GitHub">
-                        <a
-                            href="https://github.com/lucas-low"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <GithubOutlined
-                                style={{
-                                    color: "#E0E0E0",
-                                    fontSize: "20px",
-                                    margin: "0 12px",
-                                }}
-                            />
-                        </a>
-                    </Tooltip>
-                    <Tooltip title="LinkedIn">
-                        <a
-                            href="https://linkedin.com/in/lucaslowyy"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <LinkedinOutlined
-                                style={{
-                                    color: "#E0E0E0",
-                                    fontSize: "20px",
-                                    margin: "0 12px",
-                                }}
-                            />
-                        </a>
-                    </Tooltip>
-                    <Tooltip title="Twitter">
-                        <a
-                            href="https://twitter.com/0xlucaslow"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <TwitterOutlined
-                                style={{
-                                    color: "#E0E0E0",
-                                    fontSize: "20px",
-                                    margin: "0 12px",
-                                }}
-                            />
-                        </a>
-                    </Tooltip>
-                    <Tooltip title="Discord">
-                        <a
-                            href="https://discord.com/users/0x.lucas_"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <DiscordOutlined
-                                style={{
-                                    color: "#E0E0E0",
-                                    fontSize: "20px",
-                                    margin: "0 12px",
-                                }}
-                            />
-                        </a>
-                    </Tooltip>
-                </div>
             </Header>
 
             <Content style={{ padding: "24px 48px", position: "relative" }}>
@@ -136,6 +101,50 @@ export default function Home() {
                     </Col>
                 </Row>
             </Content>
+            {!isMobile && (
+                <div style={socialIconsStyle}>
+                    <Tooltip title="GitHub">
+                        <a
+                            href="https://github.com/lucas-low"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: "20px", margin: "0 8px" }}
+                        >
+                            <GithubOutlined style={{ color: "#E0E0E0" }} />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="LinkedIn">
+                        <a
+                            href="https://linkedin.com/in/lucaslowyy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: "20px", margin: "0 8px" }}
+                        >
+                            <LinkedinOutlined style={{ color: "#E0E0E0" }} />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="Twitter">
+                        <a
+                            href="https://twitter.com/0xlucaslow"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: "20px", margin: "0 8px" }}
+                        >
+                            <TwitterOutlined style={{ color: "#E0E0E0" }} />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="Discord">
+                        <a
+                            href="https://discord.com/users/yourNumericDiscordID"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ fontSize: "20px", margin: "0 8px" }}
+                        >
+                            <DiscordOutlined style={{ color: "#E0E0E0" }} />
+                        </a>
+                    </Tooltip>
+                </div>
+            )}
         </Layout>
     );
 }
