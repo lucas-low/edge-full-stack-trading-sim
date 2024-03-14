@@ -3,7 +3,7 @@ import { Layout, Row, Col } from "antd/lib";
 import Chart from "../components/Chart";
 import SwapInterface from "../components/SwapInterface";
 import TransactionHistory from "../components/TransactionHistory";
-
+import { v4 as uuidv4 } from "uuid";
 const { Header, Content } = Layout;
 
 type Transaction = {
@@ -13,19 +13,25 @@ type Transaction = {
     slippage: number;
     status: "success" | "failed";
     timestamp: string;
+    quote: {
+        inAmount: string;
+        slippageBps: number;
+    };
 };
 
 export default function Home() {
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     const handleSwapSuccess = (transaction: Transaction) => {
+        const uuid = uuidv4();
         const newTransaction: Transaction = {
-            id: transaction.id,
-            transactionHash: transaction.transactionHash,
-            amountToBuyUsdc: transaction.amountToBuyUsdc,
-            slippage: transaction.slippage,
-            status: transaction.status,
+            id: uuid,
+            transactionHash: transaction.transactionHash ?? uuid,
+            amountToBuyUsdc: parseFloat(transaction.quote.inAmount) / 1e9,
+            slippage: transaction.quote.slippageBps / 100,
+            status: "success",
             timestamp: new Date().toLocaleString(),
+            quote: transaction.quote,
         };
         setTransactions([...transactions, newTransaction]);
     };
