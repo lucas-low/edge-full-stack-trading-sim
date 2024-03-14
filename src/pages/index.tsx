@@ -15,6 +15,7 @@ const { Link } = Typography;
 const { Title } = Typography;
 import { useWindowSize } from "react-use";
 import Image from "next/image";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 type Transaction = {
     id: string;
@@ -86,6 +87,15 @@ export default function Home() {
                 <Title level={3} style={titleStyle}>
                     Edge
                 </Title>
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                    }}
+                >
+                    <WalletMultiButton />
+                </div>
             </Header>
 
             <Content style={{ padding: "24px 48px", position: "relative" }}>

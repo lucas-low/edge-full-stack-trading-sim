@@ -15,7 +15,6 @@ import {
     CloseCircleOutlined,
     LoadingOutlined,
 } from "@ant-design/icons/lib";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { swap } from "@/utils/api";
 
@@ -96,7 +95,6 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                     span={24}
                     style={{ display: "flex", justifyContent: "center" }}
                 >
-                    <WalletMultiButton />
                 </Col>
                 <Col span={24}>
                     <Input

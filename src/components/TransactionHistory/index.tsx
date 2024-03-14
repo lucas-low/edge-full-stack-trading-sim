@@ -33,7 +33,7 @@ export default function TransactionHistory({ transactions }: Props) {
     const [tableMinHeight, setTableMinHeight] = useState("500px");
 
     useEffect(() => {
-        const rowHeight = 50; // Assuming each row is 50px high
+        const rowHeight = 50;
         const minRowsToShow = 10;
         const calculateHeight = () => {
             const headerHeight = 60;
