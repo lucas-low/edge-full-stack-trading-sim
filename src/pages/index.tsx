@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Layout, Row, Col, Typography } from "antd/lib";
+import { Layout, Row, Col, Typography, Tooltip } from "antd/lib";
 import {
     GithubOutlined,
     LinkedinOutlined,
     TwitterOutlined,
-    MailOutlined,
+    DiscordOutlined,
 } from "@ant-design/icons/lib";
 import Chart from "../components/Chart";
 import SwapInterface from "../components/SwapInterface";
@@ -12,6 +12,7 @@ import TransactionHistory from "../components/TransactionHistory";
 import { v4 as uuidv4 } from "uuid";
 const { Header, Content, Footer } = Layout;
 const { Link } = Typography;
+const { Title } = Typography;
 
 type Transaction = {
     id: string;
@@ -49,13 +50,77 @@ export default function Home() {
                 style={{
                     backgroundColor: "#1C1C1C",
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: "space-between",
                     alignItems: "center",
+                    padding: "0 24px",
+                    flexWrap: "wrap",
                 }}
             >
-                <h1 style={{ color: "#E0E0E0", margin: 0 }}>
+                <Title level={2} style={{ color: "#E0E0E0", margin: 0 }}>
                     JUP/USDC Simulator
-                </h1>
+                </Title>
+                <div>
+                    <Tooltip title="GitHub">
+                        <a
+                            href="https://github.com/lucas-low"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <GithubOutlined
+                                style={{
+                                    color: "#E0E0E0",
+                                    fontSize: "20px",
+                                    margin: "0 12px",
+                                }}
+                            />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="LinkedIn">
+                        <a
+                            href="https://linkedin.com/in/lucaslowyy"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <LinkedinOutlined
+                                style={{
+                                    color: "#E0E0E0",
+                                    fontSize: "20px",
+                                    margin: "0 12px",
+                                }}
+                            />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="Twitter">
+                        <a
+                            href="https://twitter.com/0xlucaslow"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <TwitterOutlined
+                                style={{
+                                    color: "#E0E0E0",
+                                    fontSize: "20px",
+                                    margin: "0 12px",
+                                }}
+                            />
+                        </a>
+                    </Tooltip>
+                    <Tooltip title="Discord">
+                        <a
+                            href="https://discord.com/users/0x.lucas_"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <DiscordOutlined
+                                style={{
+                                    color: "#E0E0E0",
+                                    fontSize: "20px",
+                                    margin: "0 12px",
+                                }}
+                            />
+                        </a>
+                    </Tooltip>
+                </div>
             </Header>
 
             <Content style={{ padding: "24px 48px", position: "relative" }}>
@@ -71,55 +136,6 @@ export default function Home() {
                     </Col>
                 </Row>
             </Content>
-            <div
-                style={{
-                    position: "absolute",
-                    top: "16px",
-                    right: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                }}
-            >
-                <a
-                    href="https://github.com/lucas-low"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <GithubOutlined
-                        style={{
-                            color: "#E0E0E0",
-                            fontSize: "24px",
-                            margin: "0 10px",
-                        }}
-                    />
-                </a>
-                <a
-                    href="https://linkedin.com/in/lucaslowyy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <LinkedinOutlined
-                        style={{
-                            color: "#E0E0E0",
-                            fontSize: "24px",
-                            margin: "0 10px",
-                        }}
-                    />
-                </a>
-                <a
-                    href="https://twitter.com/0xlucaslow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <TwitterOutlined
-                        style={{
-                            color: "#E0E0E0",
-                            fontSize: "24px",
-                            margin: "0 10px",
-                        }}
-                    />
-                </a>
-            </div>
         </Layout>
     );
 }
