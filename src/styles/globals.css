@@ -180,3 +180,42 @@ a {
   border-color: rgb(var(--tile-border-rgb));
 }
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(5px);
+  z-index: 9;
+  display: none; 
+}
+
+.backdrop.show {
+  display: block;
+}
+.custom-slippage-popover .ant-popover-inner,
+.custom-slippage-popover .ant-popover-inner-content {
+    background-color: #292929 ; 
+    border-radius: 8px ;
+    padding: 0; 
+}
+
+.ant-popover .ant-popover-title {
+    color: white;
+    background-color: #292929;
+    border-bottom: 1px solid #303030;
+    border-radius: 8px 8px 0 0;
+}
+
+.ant-input-number .ant-input-number-input{
+  background-color: #141414;
+  color: white !important;
+  border: none;
+  text-align: center;
+}
+
+.ant-popover .ant-popover-inner {
+  padding: 10px;
+}

@@ -9,23 +9,23 @@ const TradingViewChart = dynamic(() => import("../TradingViewChart"), {
 });
 
 export default function Chart() {
-    const {
-        data: ohlcData,
-        isLoading,
-        isError,
-    } = useQuery("ohlcData", getOhlcData, {
-        retry: 3,
-        retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Exponential backoff delay between retries, capped at 30 seconds
-        staleTime: 60000,
-    });
+    // const {
+    //     data: ohlcData,
+    //     isLoading,
+    //     isError,
+    // } = useQuery("ohlcData", getOhlcData, {
+    //     retry: 3,
+    //     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000), // Exponential backoff delay between retries, capped at 30 seconds
+    //     staleTime: 60000,
+    // });
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
+    // if (isLoading) {
+    //     return <div>Loading...</div>;
+    // }
 
-    if (isError) {
-        return <div>Error fetching OHLC data. Please try again later.</div>;
-    }
+    // if (isError) {
+    //     return <div>Error fetching OHLC data. Please try again later.</div>;
+    // }
 
     return (
         <Card
@@ -37,7 +37,7 @@ export default function Chart() {
             }}
         >
             <div style={{ height: "400px" }}>
-                <TradingViewChart ohlcData={ohlcData} />
+                <TradingViewChart />
             </div>
         </Card>
     );
