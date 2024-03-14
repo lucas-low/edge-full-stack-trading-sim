@@ -3,7 +3,8 @@ import {
     CheckCircleOutlined,
     CloseCircleOutlined,
 } from "@ant-design/icons/lib";
-
+import { useWindowSize } from "react-use";
+import { useEffect, useState } from "react";
 const { Title } = Typography;
 
 type Transaction = {
@@ -18,8 +19,48 @@ type Transaction = {
 type Props = {
     transactions: Transaction[];
 };
+type TablePaginationPosition =
+    | "topLeft"
+    | "topCenter"
+    | "topRight"
+    | "bottomLeft"
+    | "bottomCenter"
+    | "bottomRight";
 
 export default function TransactionHistory({ transactions }: Props) {
+    const { height } = useWindowSize();
+    const [tableMaxHeight, setTableMaxHeight] = useState("500px");
+    const [tableMinHeight, setTableMinHeight] = useState("500px");
+
+    useEffect(() => {
+        const rowHeight = 50; // Assuming each row is 50px high
+        const minRowsToShow = 10;
+        const calculateHeight = () => {
+            const headerHeight = 60;
+            const footerHeight = 60;
+            const pageMargin = 48;
+            const otherComponentsHeight = 150;
+            const availableHeight =
+                height -
+                (headerHeight +
+                    footerHeight +
+                    pageMargin +
+                    otherComponentsHeight);
+
+            const minHeight = Math.max(300, minRowsToShow * rowHeight);
+            const maxHeight = Math.max(minHeight, availableHeight);
+
+            setTableMinHeight(`${minHeight}px`);
+            setTableMaxHeight(`${maxHeight}px`);
+        };
+
+        calculateHeight();
+
+        window.addEventListener("resize", calculateHeight);
+
+        return () => window.removeEventListener("resize", calculateHeight);
+    }, [height]);
+
     const columns = [
         {
             title: "Transaction Hash",
@@ -73,7 +114,10 @@ export default function TransactionHistory({ transactions }: Props) {
             key: "timestamp",
         },
     ];
-
+    const paginationConfig = {
+        pageSize: 10,
+        position: ["bottomCenter"] as TablePaginationPosition[],
+    };
     return (
         <Card
             style={{
@@ -91,13 +135,15 @@ export default function TransactionHistory({ transactions }: Props) {
                     dataSource={transactions}
                     columns={columns}
                     rowKey="id"
-                    pagination={false}
+                    pagination={paginationConfig}
                     style={{
                         backgroundColor: "#1e1e1e",
-                        maxHeight: "300px",
+                        maxHeight: tableMaxHeight,
+                        minHeight: tableMinHeight,
                         overflow: "auto",
                     }}
                     rowClassName={() => "transaction-row"}
+                    className="custom-pagination-table"
                 />
             ) : (
                 <div

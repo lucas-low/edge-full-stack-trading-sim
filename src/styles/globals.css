@@ -145,3 +145,38 @@ a {
 .input-grey-placeholder::placeholder {
   color: grey;
 }
+
+.custom-pagination-table .ant-pagination {
+  justify-content: center;
+}
+
+.custom-pagination-table .ant-pagination-item,
+.custom-pagination-table .ant-pagination-item-link {
+  background-color: rgb(var(--tile-end-rgb)); 
+  border-color: rgb(var(--tile-border-rgb));
+}
+
+.custom-pagination-table .ant-pagination-item a,
+.custom-pagination-table .ant-pagination-item-link:hover {
+  color: rgb(var(--foreground-rgb));
+}
+
+.custom-pagination-table .ant-pagination-item-active {
+  font-weight: bold;
+  background-color: rgb(var(--primary-glow)); 
+  border-color: rgb(var(--callout-border-rgb));
+}
+
+.custom-pagination-table .ant-pagination-prev .ant-pagination-item-link,
+.custom-pagination-table .ant-pagination-next .ant-pagination-item-link {
+  color: rgba(var(--foreground-rgb), 0.85);
+  background-color: rgba(var(--tile-end-rgb), 0.85);
+}
+
+.custom-pagination-table .ant-pagination-prev .ant-pagination-item-link:hover,
+.custom-pagination-table .ant-pagination-next .ant-pagination-item-link:hover {
+  color: rgb(var(--foreground-rgb)); 
+  background-color: rgb(var(--tile-end-rgb));
+  border-color: rgb(var(--tile-border-rgb));
+}
+
