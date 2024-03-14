@@ -13,13 +13,13 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
     slippage,
     onSlippageChange,
 }) => {
-    const [visible, setVisible] = useState(false);
-    const [tooltipVisible, setTooltipVisible] = useState(true);
+    const [openPopover, setOpenPopover] = useState(false);
+    const [tooltipVisible, setTooltipVisible] = useState(false);
 
-    const handleVisibleChange = (newVisible: boolean) => {
-        setVisible(newVisible);
-        setTooltipVisible(!newVisible);
-        if (newVisible) {
+    const handleOpenPopover = (open: boolean) => {
+        setOpenPopover(open);
+        setTooltipVisible(!open);
+        if (open) {
             document.body.classList.add("backdrop.show");
         } else {
             document.body.classList.remove("backdrop.show");
@@ -28,11 +28,12 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
 
     const handleSaveSettings = () => {
         localStorage.setItem("slippage", slippage.toString());
-        setVisible(false);
+        handleClose();
     };
 
     const handleClose = () => {
-        setVisible(false);
+        setOpenPopover(false);
+        setTooltipVisible(false);
         document.body.classList.remove("backdrop.show");
     };
 
@@ -96,23 +97,23 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
     );
     return (
         <>
-            <div className={`backdrop ${visible ? "show" : ""}`}></div>
+            <div className={`backdrop ${openPopover ? "show" : ""}`}></div>
             <Popover
                 content={content}
                 title={title}
                 trigger={[]}
-                open={visible}
-                onOpenChange={handleVisibleChange}
+                open={openPopover}
+                onOpenChange={handleOpenPopover}
                 overlayClassName="custom-slippage-popover"
             >
                 <Tooltip
                     title="Slippage Settings"
-                    open={tooltipVisible}
+                    open={!openPopover && tooltipVisible}
                     onOpenChange={setTooltipVisible}
                 >
                     <SettingOutlined
                         style={{ color: "white", cursor: "pointer" }}
-                        onClick={() => setVisible(true)}
+                        onClick={() => setOpenPopover(!openPopover)}
                     />
                     <span style={{ color: "white", marginLeft: "8px" }}>
                         {`${slippage}%`}
