@@ -1,8 +1,9 @@
 // SlippageSettings.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Popover, Button, InputNumber, Tooltip } from "antd/lib";
 import { SettingOutlined, CloseOutlined } from "@ant-design/icons/lib";
 import styles from "@/styles/SlippageSettings.module.css";
+import { useWindowSize } from "react-use";
 
 export interface SlippageSettingsProps {
     slippage: number;
@@ -18,6 +19,10 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
     const [customSlippage, setCustomSlippage] = useState<number | string>(
         slippage
     );
+
+    const { width } = useWindowSize();
+    const isMobile = width < 1024;
+
     const handleOpenPopover = (open: boolean) => {
         setOpenPopover(open);
         setTooltipVisible(!open);
@@ -98,6 +103,7 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
             </Button>
         </div>
     );
+
     return (
         <>
             <div className={`backdrop ${openPopover ? "show" : ""}`}></div>
@@ -108,6 +114,20 @@ const SlippageSettings: React.FC<SlippageSettingsProps> = ({
                 open={openPopover}
                 onOpenChange={handleOpenPopover}
                 overlayClassName="custom-slippage-popover"
+                overlayStyle={
+                    isMobile
+                        ? {
+                              position: "fixed",
+                              top: "40%",
+                              left: "50%",
+                              maxWidth: "300px",
+                              zIndex: 1050,
+                              transition: "none",
+                              transform: "translate(-50%)",
+                          }
+                        : {}
+                }
+                arrow={false}
             >
                 <Tooltip
                     title="Slippage Settings"

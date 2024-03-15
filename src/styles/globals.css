@@ -190,7 +190,10 @@ a {
   backdrop-filter: blur(5px);
   z-index: 9;
   display: none; 
+  justify-content: center;
+  align-items: center;
 }
+
 
 .backdrop.show {
   display: block;
@@ -218,4 +221,8 @@ a {
 
 .ant-popover .ant-popover-inner {
   padding: 10px;
+}
+
+.custom-slippage-popover .ant-popover {
+    transition: none !important;
 }
