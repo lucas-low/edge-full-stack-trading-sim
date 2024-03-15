@@ -1,4 +1,3 @@
-// SlippageSettings.tsx
 import React, { useEffect, useState } from "react";
 import { Popover, Button, InputNumber, Tooltip } from "antd/lib";
 import { SettingOutlined, CloseOutlined } from "@ant-design/icons/lib";

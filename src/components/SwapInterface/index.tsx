@@ -70,10 +70,6 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
 
     return (
         <>
-            <SlippageSettings
-                slippage={slippage}
-                onSlippageChange={handleSlippageChange}
-            />
             <Card
                 style={{
                     backgroundColor: "#3C3C3C",
@@ -82,6 +78,14 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                     marginTop: "16px",
                 }}
             >
+                <Row gutter={[16, 16]} style={{ marginBottom: "16px" }}>
+                    <Col span={24}>
+                        <SlippageSettings
+                            slippage={slippage}
+                            onSlippageChange={handleSlippageChange}
+                        />
+                    </Col>
+                </Row>
                 <Title level={4} style={{ color: "#E0E0E0" }}>
                     Simulate USDC/JUP Swap
                 </Title>
@@ -97,6 +101,7 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                             style={{
                                 backgroundColor: "#2C2C2C",
                                 color: "#E0E0E0",
+                                borderRadius: "12px",
                             }}
                         />
                     </Col>
@@ -104,19 +109,6 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                         span={24}
                         style={{ display: "flex", justifyContent: "center" }}
                     ></Col>
-                    {/* <Col span={24}>
-                    <Input
-                        type="number"
-                        value={slippage}
-                        onChange={(e) =>
-                            setSlippage(parseFloat(e.target.value))
-                        }
-                        placeholder="Slippage Tolerance (%)"
-                        size="large"
-                        className="input-grey-placeholder"
-                        style={{ backgroundColor: "#2C2C2C", color: "#E0E0E0" }}
-                    />
-                </Col> */}
                     <Col span={24}>
                         <Button
                             type="primary"
@@ -127,6 +119,7 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                             style={{
                                 backgroundColor: "#805AD5",
                                 borderColor: "#805AD5",
+                                borderRadius: "12px",
                             }}
                         >
                             {swapStatus === "pending" ? (

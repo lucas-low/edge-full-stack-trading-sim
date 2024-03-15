@@ -1,7 +1,8 @@
-import { Card, Table, Typography, Tag } from "antd/lib";
+import { Card, Table, Typography, Tag, Tooltip } from "antd/lib";
 import {
     CheckCircleOutlined,
     CloseCircleOutlined,
+    InfoCircleOutlined,
 } from "@ant-design/icons/lib";
 import { useWindowSize } from "react-use";
 import { useEffect, useState } from "react";
@@ -14,11 +15,12 @@ type Transaction = {
     slippage: number;
     status: "success" | "failed";
     timestamp: string;
+    routePlan: Route[];
+    quote: {
+        routePlan: Route[];
+    };
 };
 
-type Props = {
-    transactions: Transaction[];
-};
 type TablePaginationPosition =
     | "topLeft"
     | "topCenter"
@@ -27,7 +29,59 @@ type TablePaginationPosition =
     | "bottomCenter"
     | "bottomRight";
 
-export default function TransactionHistory({ transactions }: Props) {
+const darkModeStyles = {
+    card: {
+        backgroundColor: "#1e1e1e",
+        borderRadius: "8px",
+        border: "none",
+        color: "#ffffff",
+    },
+    table: {
+        backgroundColor: "#1e1e1e",
+        color: "#ffffff",
+    },
+    row: {
+        borderBottom: "1px solid #333",
+     
+    },
+    link: {
+        color: "#58a6ff",
+        "&:hover": {
+            textDecoration: "underline",
+        },
+    },
+    noDataText: {
+        color: "#ffffff",
+    },
+};
+
+const expandedRowRender = (record: Transaction) => {
+    const routePlan = record.quote?.routePlan;
+    if (!routePlan || routePlan.length === 0) {
+        return <p style={darkModeStyles.noDataText}>No route plan available</p>;
+    }
+
+    return (
+        <div>
+            {routePlan.map((route, index) => (
+                <p key={index} style={darkModeStyles.table}>
+                    {route.swapInfo.label}:{" "}
+                    <span style={{ fontWeight: "bold" }}>{route.percent}%</span>{" "}
+                    - In Amount:
+                    {route.swapInfo.inAmount} - Out Amount:{" "}
+                    {route.swapInfo.outAmount}
+                </p>
+            ))}
+        </div>
+    );
+};
+
+export default function TransactionHistory({
+    transactions,
+}: {
+    transactions: Transaction[];
+}) {
+    console.log("Transactions", transactions);
     const { height } = useWindowSize();
     const [tableMaxHeight, setTableMaxHeight] = useState("500px");
     const [tableMinHeight, setTableMinHeight] = useState("500px");
@@ -127,9 +181,6 @@ export default function TransactionHistory({ transactions }: Props) {
                 border: "none",
             }}
         >
-            {/* <Title level={4} style={{ color: "#ffffff" }}>
-                Transaction History
-            </Title> */}
             {transactions.length > 0 ? (
                 <Table
                     dataSource={transactions}
@@ -144,6 +195,14 @@ export default function TransactionHistory({ transactions }: Props) {
                     }}
                     rowClassName={() => "transaction-row"}
                     className="custom-pagination-table"
+                    size="middle"
+                    expandable={{
+                        expandedRowRender,
+                        expandRowByClick: true,
+                        expandedRowClassName: () => "expanded-row-style",
+                        rowExpandable: (record) =>
+                            record.name !== "Not Expandable",
+                    }}
                 />
             ) : (
                 <div

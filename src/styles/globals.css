@@ -137,6 +137,12 @@ a {
   border-bottom: none; 
 }
 
+.ant-table-wrapper .ant-table {
+  background-color: #1e1e1e;
+  color: #d0d0d0;
+  border-bottom: none;
+}
+
 .ant-table .ant-table-container .ant-table-content table thead.ant-table-thead .ant-table-cell {
   background-color: #1e1e1e;
   color: #d0d0d0;

@@ -5,7 +5,6 @@ import "@solana/wallet-adapter-react-ui/styles.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { cssTransition } from "react-toastify";
 
 const WalletProvider = dynamic(() => import("../contexts/WalletProvider"), {
     ssr: false,
