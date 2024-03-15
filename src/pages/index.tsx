@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useState } from "react";
-import { Layout, Row, Col, Typography, Tooltip } from "antd/lib";
+import { Layout, Row, Col, Typography, Tooltip, Button } from "antd/lib";
 import {
     GithubOutlined,
     LinkedinOutlined,
@@ -16,6 +16,8 @@ const { Title } = Typography;
 import { useWindowSize } from "react-use";
 import Image from "next/image";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { startTradingBot } from "../tradingbot";
+import { logger } from "../logger";
 
 type Transaction = {
     id: string;
@@ -81,6 +83,15 @@ export default function Home() {
         letterSpacing: "0.05em",
         textShadow: "2px 2px 8px rgba(255, 255, 255, 0.6)",
     };
+
+    const startBot = async () => {
+        try {
+            await startTradingBot();
+        } catch (error) {
+            logger.error(`An error occurred: ${error.message}`);
+        }
+    };
+
     return (
         <Layout style={{ minHeight: "100vh", backgroundColor: "#1C1C1C" }}>
             <Header style={headerStyle}>
@@ -108,6 +119,9 @@ export default function Home() {
                     </Col>
                     <Col xs={24}>
                         <TransactionHistory transactions={transactions} />
+                    </Col>
+                    <Col xs={24}>
+                        <Button onClick={startBot}>Start Trading Bot</Button>
                     </Col>
                 </Row>
             </Content>
