@@ -45,7 +45,7 @@
     color: white;
     background-color: #805AD5; 
     border: none;
-    width: calc(100% - 8px);
+    width: 100%;
 }
 
 .customInputWrapper {
