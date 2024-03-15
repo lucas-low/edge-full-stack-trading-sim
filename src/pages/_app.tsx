@@ -7,10 +7,6 @@ import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { cssTransition } from "react-toastify";
 
-const EaseIn = cssTransition({
-    enter: "animate__animated animate__fadeIn",
-    exit: "animate__animated animate__fadeOut",
-});
 const WalletProvider = dynamic(() => import("../contexts/WalletProvider"), {
     ssr: false,
 });
@@ -23,14 +19,14 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />
                 <ToastContainer
                     position="bottom-left"
-                    autoClose={5000}
+                    autoClose={5000} // 5 seconds
                     hideProgressBar
                     closeOnClick
                     pauseOnFocusLoss
                     draggable
                     pauseOnHover
                     theme="dark"
-                    transition={EaseIn}
+                    transition={Slide}
                 />
             </QueryClientProvider>
         </WalletProvider>
