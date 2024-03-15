@@ -223,6 +223,6 @@ a {
   padding: 10px;
 }
 
-.custom-slippage-popover .ant-popover {
-    transition: none !important;
+.animate__animated {
+  animation-duration: 750ms;
 }

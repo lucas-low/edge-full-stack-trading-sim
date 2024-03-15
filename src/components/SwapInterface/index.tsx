@@ -1,14 +1,5 @@
 import { SetStateAction, useState } from "react";
-import {
-    Alert,
-    Button,
-    Card,
-    Col,
-    Input,
-    message,
-    Row,
-    Typography,
-} from "antd/lib";
+import { Alert, Button, Card, Col, Input, Row, Typography } from "antd/lib";
 import {
     SwapOutlined,
     CheckCircleOutlined,
@@ -18,6 +9,7 @@ import {
 import { useWallet } from "@solana/wallet-adapter-react";
 import { swap } from "@/utils/api";
 import SlippageSettings from "../SlippageSettings";
+import { toast } from "react-toastify";
 
 const { Title } = Typography;
 
@@ -35,12 +27,12 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
 
     const handleSwap = async () => {
         if (!amountToBuyUsdc) {
-            message.error("Please enter an amount to swap.");
+            toast.error("Please enter an amount to swap.");
             return;
         }
 
         if (!wallet.publicKey) {
-            message.error("Please connect your wallet.");
+            toast.error("Please connect your wallet.");
             return;
         }
 
@@ -52,20 +44,23 @@ export default function SwapInterface({ onSwapSuccess }: Props) {
                 wallet.publicKey.toBase58(),
                 slippageBps
             );
-            setSwapStatus("success");
-            onSwapSuccess(transaction);
-            message.success("Swap successful!");
+            if (transaction && transaction.success) {
+                setSwapStatus("success");
+                onSwapSuccess(transaction);
+                toast.success("Swap successful!");
+            } else {
+                throw new Error("Swap transaction failed");
+            }
         } catch (error) {
+            setSwapStatus("failed");
+            let errorMessage = "An unknown error occurred";
             if (error instanceof Error) {
-                setSwapStatus("failed");
-                setSwapError(error.message);
-                message.error(error.message);
+                errorMessage = error.message;
             } else {
                 console.error("An unknown error occurred:", error);
-                setSwapStatus("failed");
-                setSwapError("An unknown error occurred");
-                message.error("An unknown error occurred");
             }
+            setSwapError(errorMessage);
+            toast.error(errorMessage);
         }
     };
 

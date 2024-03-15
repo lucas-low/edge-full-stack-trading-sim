@@ -33,6 +33,7 @@
         "react": "^18",
         "react-dom": "^18",
         "react-query": "^3.39.3",
+        "react-toastify": "^10.0.4",
         "react-use": "^17.5.0",
         "web3-react-phantom": "^1.0.4"
     },
