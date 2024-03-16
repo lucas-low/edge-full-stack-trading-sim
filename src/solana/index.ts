@@ -32,15 +32,17 @@ export const sendTransaction = async (transaction: Transaction): Promise<string>
     throw new Error(`Failed to send transaction: ${error.message}`);
   }
 };
-
 export const getBalance = async (publicKey: PublicKey): Promise<number> => {
   try {
     const balance = await connection.getBalance(publicKey);
     return balance / 1e9; // Convert lamports to SOL
-  } catch (error) {
-    throw new Error(`Failed to get balance: ${error.message}`);
+  } catch (error: any) {
+    if (error.message.includes('403')) {
+      throw new Error(`Access forbidden: ${error.message}. Check your RPC endpoint configuration or contact support.`);
+    } else {
+      throw new Error(`Failed to get balance: ${error.message}`);
+    }
   }
 };
-
 
 export const getPublicKey = () => keypair.publicKey;

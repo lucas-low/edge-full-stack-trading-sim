@@ -42,7 +42,6 @@ const darkModeStyles = {
     },
     row: {
         borderBottom: "1px solid #333",
-     
     },
     link: {
         color: "#58a6ff",
@@ -81,7 +80,6 @@ export default function TransactionHistory({
 }: {
     transactions: Transaction[];
 }) {
-    console.log("Transactions", transactions);
     const { height } = useWindowSize();
     const [tableMaxHeight, setTableMaxHeight] = useState("500px");
     const [tableMinHeight, setTableMinHeight] = useState("500px");
