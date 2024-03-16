@@ -1,7 +1,9 @@
-import { Connection, Keypair, PublicKey, Transaction } from '@solana/web3.js';
+import { Connection, Keypair, PublicKey, Transaction, clusterApiUrl } from '@solana/web3.js';
 import { getConfig } from '../config';
 
-const { solanaEndpoint, privateKey } = getConfig();
+const { privateKey } = getConfig();
+
+const  solanaEndpoint= clusterApiUrl("mainnet-beta")
 const connection = new Connection(solanaEndpoint);
 
 let keypair: Keypair;
@@ -12,6 +14,7 @@ if (privateKey) {
     console.error('Failed to parse private key:', error);
     console.warn('Private key not found in configuration. Using a default key for development only.');
     keypair = Keypair.generate(); 
+    console.warn('Public key:', keypair.publicKey.toString());
   }
 } else {
   console.warn('Private key not found in configuration. Using a default key for development only.');
