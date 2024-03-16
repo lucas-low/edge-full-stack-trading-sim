@@ -33,4 +33,14 @@ export const sendTransaction = async (transaction: Transaction): Promise<string>
   }
 };
 
+export const getBalance = async (publicKey: PublicKey): Promise<number> => {
+  try {
+    const balance = await connection.getBalance(publicKey);
+    return balance / 1e9; // Convert lamports to SOL
+  } catch (error) {
+    throw new Error(`Failed to get balance: ${error.message}`);
+  }
+};
+
+
 export const getPublicKey = () => keypair.publicKey;
